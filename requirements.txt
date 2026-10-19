@@ -1,0 +1,25 @@
+# ExamShield Pinned Dependencies
+# Verified with Python 3.13 / Windows & Linux containers
+# OpenCV 5 Core Requirement (strictly pinned)
+opencv-python==5.0.0.93
+numpy==2.4.6
+
+# AWS SDK & Cloud Infrastructure
+boto3==1.43.114
+botocore==1.43.114
+
+# Web API, Validation & Runtime Engine
+fastapi==0.146.0
+uvicorn==0.54.0
+pydantic==2.14.1
+pydantic-core==2.50.1
+starlette==1.9.0
+
+# Scientific & Evaluation Tools
+scipy==1.18.0
+matplotlib==3.10.9
+
+# Testing & Utilities
+pytest==9.1.1
+requests==2.34.2
+httpx==0.28.1

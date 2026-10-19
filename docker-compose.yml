@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  examshield-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: examshield_core
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - OPENCV_REQUIRED_MAJOR_VERSION=5
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+      - DYNAMODB_AUDIT_TABLE=${DYNAMODB_AUDIT_TABLE:-ExamShield-Audit}
+      - S3_EVIDENCE_BUCKET=${S3_EVIDENCE_BUCKET:-examshield-evidence-store}
+      - BEDROCK_MODEL_ID=${BEDROCK_MODEL_ID:-anthropic.claude-3-5-sonnet-20241022-v2:0}
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
